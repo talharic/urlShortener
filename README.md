@@ -1,4 +1,4 @@
-# Url Shortener / Java Spring - React
+# Url Shortener with Java Spring
 ## Kullanılan Dependency'ler
 - Spring Web
 - Spring Data JPA

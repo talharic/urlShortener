@@ -14,19 +14,19 @@ public class RandomStringGenerator {
     @Value("${codeLength}")
     private int codeLength;
 
-    public String generateRandomString(){
+    public String generateRandomString() {
 
         SecureRandom random = new SecureRandom();
-        String generated="";
+        String generated = "";
 
         var letters = "abcdefghijklmnprstuvyzq123456789"
                 .toUpperCase()
                 .chars()
-                .mapToObj(x->(char)x)
+                .mapToObj(x -> (char) x)
                 .collect(Collectors.toList());
 
         Collections.shuffle(letters);
-        for(int i = 0; i < codeLength; i++){
+        for (int i = 0; i < codeLength; i++) {
             generated += letters.get(random.nextInt(letters.size()));
         }
         return generated;

@@ -28,20 +28,19 @@ public class ShortUrlService {
     }
 
     public ShortUrl create(ShortUrl shortUrl) {
-        if(shortUrl.getCode() == null || shortUrl.getCode().isEmpty()){
+        if (shortUrl.getCode() == null || shortUrl.getCode().isEmpty()) {
             shortUrl.setCode(generateCode());
-        }
-        else if(repository.findAllByCode(shortUrl.getCode()).isPresent()){
+        } else if (repository.findAllByCode(shortUrl.getCode()).isPresent()) {
             throw new CodeAlreadyExists("Aynısından zaten var.");
         }
         shortUrl.setCode(shortUrl.getCode().toUpperCase());
         return repository.save(shortUrl);
     }
 
-    private String generateCode(){
+    private String generateCode() {
         String code;
 
-        do{
+        do {
             code = randomStringGenerator.generateRandomString();
         }
         while (repository.findAllByCode(code).isPresent());

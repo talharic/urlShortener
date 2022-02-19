@@ -32,14 +32,14 @@ public class UrlController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ShortUrlDto>> getAllUrls(){
+    public ResponseEntity<List<ShortUrlDto>> getAllUrls() {
         return new ResponseEntity<List<ShortUrlDto>>(
                 shortUrlDtoConverter.convertToDto(service.getAllShortUrl()), HttpStatus.OK
         );
     }
 
     @GetMapping("/show/{code}")
-    public ResponseEntity<ShortUrlDto> getUrlByCode(@Valid @NotEmpty @PathVariable String code){
+    public ResponseEntity<ShortUrlDto> getUrlByCode(@Valid @NotEmpty @PathVariable String code) {
         return new ResponseEntity<ShortUrlDto>(
                 shortUrlDtoConverter.convertToDto(service.getUrlByCode(code)), HttpStatus.OK
         );
@@ -52,12 +52,13 @@ public class UrlController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(uri);
         return new ResponseEntity<>(
-                httpHeaders,HttpStatus.SEE_OTHER
+                httpHeaders, HttpStatus.SEE_OTHER
         );
     }
+
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody ShortUrlRequest shortUrlRequest){
+    public ResponseEntity<?> create(@Valid @RequestBody ShortUrlRequest shortUrlRequest) {
         ShortUrl shortUrl = shortUrlRequestConventer.convertToEntity(shortUrlRequest);
-        return new ResponseEntity<ShortUrlDto>(shortUrlDtoConverter.convertToDto(service.create(shortUrl)),HttpStatus.CREATED);
+        return new ResponseEntity<ShortUrlDto>(shortUrlDtoConverter.convertToDto(service.create(shortUrl)), HttpStatus.CREATED);
     }
 }

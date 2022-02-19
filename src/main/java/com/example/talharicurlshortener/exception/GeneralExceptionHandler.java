@@ -20,21 +20,21 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
-        Map<String,String> errors = new HashMap<>();
+        Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors()
-                .forEach(x->{
-                    String fieldName = ((FieldError)x).getField();
+                .forEach(x -> {
+                    String fieldName = ((FieldError) x).getField();
                     String errorMessage = x.getDefaultMessage();
-                    errors.put(fieldName,errorMessage);
+                    errors.put(fieldName, errorMessage);
                 });
 
-        return new ResponseEntity<>(errors,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(CodeAlreadyExists.class)
-    public ResponseEntity<?> CodeAlreadyExists(CodeAlreadyExists e){
+    public ResponseEntity<?> CodeAlreadyExists(CodeAlreadyExists e) {
         Map<String, String> errors = new HashMap<>();
-        errors.put("error",e.getMessage());
-        return new ResponseEntity<>(errors,HttpStatus.CONFLICT);
+        errors.put("error", e.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
 }

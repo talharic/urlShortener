@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ShortUrlRequestConventer {
-    public ShortUrl convertToEntity(ShortUrlRequest shortUrlRequest){
+    public ShortUrl convertToEntity(ShortUrlRequest shortUrlRequest) {
         return ShortUrl.builder()
                 .url(shortUrlRequest.getUrl())
                 .code(shortUrlRequest.getCode())

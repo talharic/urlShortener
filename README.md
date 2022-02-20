@@ -18,6 +18,7 @@
 
 ·domain.com/SHORT
 
+
 ## API Reference
 
 - #### Get all urls
